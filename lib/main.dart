@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,16 +14,29 @@ void main() {
   )));
 }
 
-class MagicBall extends StatelessWidget {
+class MagicBall extends StatefulWidget {
+  @override
+  _MagicBallState createState() => _MagicBallState();
+}
+
+class _MagicBallState extends State<MagicBall> {
+  int number = 3;
+
+  void randomize() {
+    setState(() {
+      number = Random().nextInt(5) + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Expanded(
         child: FlatButton(
           onPressed: () {
-            print('pressed');
+            randomize();
           },
-          child: Image.asset('images/ball3.png'),
+          child: Image.asset('images/ball$number.png'),
         ),
       ),
     );
